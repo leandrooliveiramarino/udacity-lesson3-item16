@@ -1,0 +1,23 @@
+.container h1 {
+    margin: 50px;
+    text-align: center;
+    color: #007bff;
+}
+
+.container .card {
+    height: 500px;
+}
+
+.container .card .list-group {
+    max-height: 406px;
+    overflow-y: auto;
+}
+
+.btn-toggle-hide {
+    margin-top: 20px;
+}
+
+.title {
+    font-variant: small-caps;
+    font-weight: bold;
+}
