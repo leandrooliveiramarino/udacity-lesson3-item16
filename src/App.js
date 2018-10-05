@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import UsersList from './UsersList';
 import AddUser from './AddUser';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -10,7 +9,8 @@ class App extends Component {
     formMessage: {
       type: 'success',
       message: ''
-    }
+    },
+    userList: {}
   }
 
   render() {
@@ -19,7 +19,7 @@ class App extends Component {
         <h1 className='title'>Ranking</h1>
         <div className='row'>
             <AddUser handleSubmit={this.handleSubmit} formMessage={this.state.formMessage}/>
-            <UsersList/>
+            <UsersList users={this.state.userList}/>
         </div>
       </React.Fragment>
     );
@@ -35,11 +35,26 @@ class App extends Component {
     }
 
     if(!this.isFormValid(formData)) {
-      this.handleFormMessage('danger', 'Please, fill all the options above');
+      this.handleFormMessage(
+        'danger',
+        'Please, fill all the options above or username has already been taken'
+      );
       return;
     }
 
-    this.handleFormMessage('success', 'User successfully registered!');
+    this.addUserToList(formData);
+    this.handleFormMessage(
+      'success',
+      'User successfully registered!'
+    );
+    form.reset();
+  }
+
+  addUserToList = (user) => {
+    this.setState((prevState) => {
+      prevState.userList[user.username] = user;
+      return prevState;
+    });
   }
 
   handleFormMessage = (type, message) => {
@@ -53,6 +68,10 @@ class App extends Component {
   }
 
   isFormValid = (formData) => {
+    if(this.state.userList.hasOwnProperty(formData.username)) {
+      return false;
+    }
+
     return !Object.keys(formData).filter((element) => {
       return formData[element] === '';
     }).length;

@@ -11,7 +11,16 @@ class UsersList extends Component {
                   </div>
                   <div className='card-body'>
                     <div className='list-group'>
-                      <ListGroupItem/>
+                        {
+                            Object.keys(this.props.users).map((key) => (
+                                <ListGroupItem
+                                    key={this.props.users[key].username}
+                                    username={this.props.users[key].username}
+                                    firstName={this.props.users[key].firstName}
+                                    lastName={this.props.users[key].lastName}
+                                />
+                            ))
+                        }
                     </div>
                   </div>
                 </div>
