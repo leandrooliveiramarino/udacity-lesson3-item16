@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UsersList from './UsersList';
 import AddUser from './AddUser';
-import './App.css';
+import './style.css';
 
 class App extends Component {
 
@@ -19,7 +19,7 @@ class App extends Component {
               userList={this.state.userList}
             />
             <UsersList
-              users={this.state.userList}
+              userList={this.state.userList}
             />
         </div>
       </React.Fragment>

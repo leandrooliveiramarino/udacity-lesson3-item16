@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function FormMessage(props) {
   return (
@@ -6,6 +7,10 @@ function FormMessage(props) {
     {props.formMessage.message}
     </div>
     );
+}
+
+FormMessage.propTypes = {
+    formMessage: PropTypes.object.isRequired
 }
 
 export default FormMessage;

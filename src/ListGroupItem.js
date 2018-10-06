@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function ListGroupItem(props) {
     return (
@@ -9,6 +10,16 @@ function ListGroupItem(props) {
             <p className='mb-1'>{`${props.firstName} ${props.lastName}`} | {props.numberGamesPlayed} game(s) played</p>
         </div>
     );
+}
+
+ListGroupItem.propTypes = {
+    username: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    numberGamesPlayed: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ])
 }
 
 export default ListGroupItem;

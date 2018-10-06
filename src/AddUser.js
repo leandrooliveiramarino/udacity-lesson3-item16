@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import FormMessage from './FormMessage.js';
 
 class AddUser extends Component {
+
+    static propTypes = {
+      handleSubmit: PropTypes.func.isRequired,
+      userList: PropTypes.object.isRequired
+    }
 
     state = {
       firstName: '',
