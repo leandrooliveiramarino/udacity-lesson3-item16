@@ -18,13 +18,14 @@ class UsersList extends Component {
                                     username={this.props.users[key].username}
                                     firstName={this.props.users[key].firstName}
                                     lastName={this.props.users[key].lastName}
+                                    formattedNumberPlayedGames={this.props.users[key].formattedNumberPlayedGames}
                                 />
                             ))
                         }
                     </div>
                   </div>
                 </div>
-                <button type='button' className='btn btn-primary btn-block btn-toggle-hide'>Hide the Number of Games Played</button>
+                <button type='button' className='btn btn-primary btn-block btn-toggle-hide' data-show="1" onClick={this.props.toggleGamesPlayed}>Hide the Number of Games Played</button>
             </div>
         );
     }
