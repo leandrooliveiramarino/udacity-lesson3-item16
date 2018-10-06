@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import ListGroupItem from './ListGroupItem';
 
 class UsersList extends Component {
+
+    state = {
+        showNumberGames: true
+    }
+
     render() {
         return (
             <div className='col-sm'>
@@ -18,16 +23,36 @@ class UsersList extends Component {
                                     username={this.props.users[key].username}
                                     firstName={this.props.users[key].firstName}
                                     lastName={this.props.users[key].lastName}
-                                    formattedNumberPlayedGames={this.props.users[key].formattedNumberPlayedGames}
+                                    numberGamesPlayed={this.state.showNumberGames ? this.props.users[key].numberGamesPlayed : '*'}
                                 />
                             ))
                         }
                     </div>
                   </div>
                 </div>
-                <button type='button' className='btn btn-primary btn-block btn-toggle-hide' data-show="1" onClick={this.props.toggleGamesPlayed}>Hide the Number of Games Played</button>
+                <button
+                    type='button'
+                    className='btn btn-primary btn-block btn-toggle-hide'
+                    onClick={this.toggleGamesPlayed}>{this.numberGamesText()}</button>
             </div>
         );
+    }
+
+    toggleGamesPlayed = () => {
+        this.handleState();
+    }
+
+    handleState = () => {
+      this.setState(prevState => ({
+          ...prevState,
+          showNumberGames: !prevState.showNumberGames
+      }));
+    }
+
+    numberGamesText = () => {
+        return this.state.showNumberGames
+            ? 'Hide the Number of Games Played'
+            : 'Show the Number of Games Played';
     }
 }
 
